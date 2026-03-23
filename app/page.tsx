@@ -404,7 +404,6 @@ export default function Home() {
                   </div>
                 </motion.div>
               ))}
-
               <AnimatePresence>
                 {isTyping && (
                   <motion.div
