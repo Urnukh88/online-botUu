@@ -63,9 +63,9 @@ export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
   const { isSignedIn } = useUser();
 
   return (
-    <header className="flex items-center justify-between px-8 py-6 border-b border-black/10 dark:border-white/5 bg-background">
+    <header className="flex items-center text-yellow-500 justify-between px-8 py-6 border-b border-black/10 dark:border-white/5 bg-background">
       <button onClick={toggleSidebar}>
-        <span>Menu</span>
+        <span>ShopAi</span>
       </button>
 
       <div className="flex items-center gap-3">
@@ -73,18 +73,7 @@ export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
           <img className="w-10 h-10 rounded-lg" src="/title.png" alt="Logo" />
         </h2>
       </div>
-
       <div className="flex items-center gap-4">
-        {!isSignedIn ? (
-          <SignInButton mode="redirect">
-            <button className="px-4 py-2 rounded-lg border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-all">
-              Sign in
-            </button>
-          </SignInButton>
-        ) : (
-          <UserButton />
-        )}
-
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center justify-center rounded-full w-10 h-10 border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-all outline-none relative shrink-0">
             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -99,11 +88,17 @@ export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
             <DropdownMenuItem onClick={() => setTheme("dark")}>
               Dark
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        {!isSignedIn ? (
+          <SignInButton mode="redirect">
+            <button className="w-10 h-10 border rounded-full boirder-black justify-center flex items-center hover:bg-black/5 dark:hover:bg-white/5">
+              <img src="/people.png" className="w-6 h-6 cursor-pointer" />
+            </button>
+          </SignInButton>
+        ) : (
+          <UserButton />
+        )}
       </div>
     </header>
   );

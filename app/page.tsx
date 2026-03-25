@@ -12,6 +12,7 @@ import { ProductCarousel } from "@/app/components/InfiniteCarousel";
 import { ProductDetailSidebar } from "./components/ProductDetailSidebar";
 import { AnimatePresence, motion } from "framer-motion";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { useUser, useClerk } from "@clerk/nextjs";
 
 const SplineScene = dynamic(
   () => import("@/components/ui/splite").then((mod) => mod.SplineScene),
@@ -41,6 +42,8 @@ export default function Home() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
 
   useEffect(() => {
     const savedAllChats = localStorage.getItem("ai_all_chats");
